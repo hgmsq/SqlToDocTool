@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseToDocument", "DataBaseToDocument\DataBaseToDocument.csproj", "{3ABEFEF9-83EC-45F4-AF4B-D83D56CDED00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonService", "CommonService\CommonService.csproj", "{17BF5EA4-7096-4D5B-8E94-7659395E1E89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ABEFEF9-83EC-45F4-AF4B-D83D56CDED00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ABEFEF9-83EC-45F4-AF4B-D83D56CDED00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ABEFEF9-83EC-45F4-AF4B-D83D56CDED00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ABEFEF9-83EC-45F4-AF4B-D83D56CDED00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17BF5EA4-7096-4D5B-8E94-7659395E1E89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17BF5EA4-7096-4D5B-8E94-7659395E1E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17BF5EA4-7096-4D5B-8E94-7659395E1E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17BF5EA4-7096-4D5B-8E94-7659395E1E89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

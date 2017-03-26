@@ -1,0 +1,12 @@
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\CommonService.dll
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\CommonService.pdb
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\Dapper.dll
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\Dapper.xml
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\obj\Debug\CommonService.dll
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\obj\Debug\CommonService.pdb
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\NPOI.dll
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\NPOI.OOXML.dll
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\NPOI.OpenXml4Net.dll
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\Git\DataBaseToDocument\DataBaseToDocument\CommonService\bin\Debug\NPOI.xml
