@@ -54,7 +54,9 @@ namespace DataBaseToDocument
                 string uid = txtUser.Text.Trim();
                 string pwd = txtPwd.Text.Trim();
                 string constr = service.GetConnectioning(servername, uid, pwd,db);
+                var listnew = service.GetTableDetail("UserInfo", constr);
                 var list = service.GetDBTableList(constr);
+                
                 docservice.CreateToWord(list);
                 MessageBox.Show("生成成功");
             }

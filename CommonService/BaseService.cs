@@ -3,6 +3,9 @@ using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
+using static CommonService.NpoiToDoc;
+using System.Text;
+
 namespace CommonService
 {
     public class BaseService
@@ -115,6 +118,35 @@ namespace CommonService
                 
             }
             return list;
-        } 
+        }
+        /// <summary>
+        /// 获取字段的信息
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="conStr"></param>
+        /// <returns></returns>
+        public List<TableDetail> GetTableDetail(string tableName, string conStr)
+        {
+            var list = new List<TableDetail>();
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT [index] = a.colorder,    Title = a.name,    isMark =        CASE    WHEN COLUMNPROPERTY(a.id, a.name, 'IsIdentity') = 1 THEN '1' ELSE '0' END, ");
+            sb.Append("isPK =  CASE   WHEN EXISTS(SELECT  1  FROM sysobjects WHERE xtype = 'PK' AND parent_obj = a.id AND name IN(SELECT name  FROM sysindexes WHERE indid IN(SELECT indid  FROM sysindexkeys  WHERE id = a.id AND colid = a.colid)) ) THEN '1' ELSE '0' END, ");
+            sb.Append("	FieldType = b.name,fieldLenth = COLUMNPROPERTY(a.id, a.name, 'PRECISION'),isAllowEmpty =  CASE   WHEN a.isnullable = 1 THEN '1' ELSE '0' END, defaultValue = ISNULL(e.text, ''), fieldDesc = ISNULL(g.[value], '') ");
+            sb.Append("FROM syscolumns a LEFT JOIN systypes b  ON a.xusertype = b.xusertype INNER JOIN sysobjects d ON a.id = d.id AND d.xtype = 'U' AND d.name <> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault = e.id ");
+            sb.Append("LEFT JOIN sys.extended_properties g ON a.id = G.major_id AND a.colid = g.minor_id LEFT JOIN sys.extended_properties f ON d.id = f.major_id AND f.minor_id = 0");
+            //--如果只查询指定表,加上此红色where条件，tablename是要查询的表名；去除红色where条件查询说有的表信息
+            sb.Append("WHERE d.name = '"+ tableName + "' ORDER BY a.id, a.colorder, d.name");        
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conStr))
+                {
+                    list = connection.Query<TableDetail>(sb.ToString()).ToList();
+                }
+            }
+            catch
+            { }
+
+            return list;
+        }
     }
 }
