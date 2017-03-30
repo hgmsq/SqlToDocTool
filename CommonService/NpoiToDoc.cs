@@ -46,9 +46,9 @@ namespace CommonService
 
                     //从第二行开始 因为第一行是表头
                     int i = 1;
-
-                    XWPFTable table = doc.CreateTable(list.Count + 1, 9);
-                    table.Width = 800;
+                    var tabledetaillist = service.GetTableDetail(item, conStr);
+                    XWPFTable table = doc.CreateTable(tabledetaillist.Count + 1, 9);
+                    table.Width = 5000;
 
                     #region 设置表头               
 
@@ -120,7 +120,7 @@ namespace CommonService
 
                     #endregion
 
-                    var tabledetaillist = service.GetTableDetail(item,conStr);
+                    
                     if (tabledetaillist != null && tabledetaillist.Count > 0)
                     {
                         foreach (var itm in tabledetaillist)
