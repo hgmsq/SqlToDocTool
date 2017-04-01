@@ -14,19 +14,23 @@ namespace CommonService
         /// 生成word文档
         /// </summary>
         /// <param name="list">数据库数据表的列表</param>
-        public void CreateToWord(List<string> list,string conStr)
+        public void CreateToWord(List<string> list,string conStr,string db)
         {
             XWPFDocument doc = new XWPFDocument();      //创建新的word文档
 
             XWPFParagraph p1 = doc.CreateParagraph();   //向新文档中添加段落
          
             p1.Alignment = ParagraphAlignment.CENTER;
-            XWPFRun r1 = p1.CreateRun();                //向该段落中添加文字
-            r1.SetText("测试段落一");
+            XWPFRun r1 = p1.CreateRun();
+            r1.FontFamily = "微软雅黑";
+            r1.FontSize = 22;
+            r1.IsBold = true;            
+            //向该段落中添加文字
+            r1.SetText(db+"数据库说明文档");
 
-            XWPFParagraph p2 = doc.CreateParagraph();  
-            XWPFRun r2 = p2.CreateRun();
-            r2.SetText("测试段落二");
+            //XWPFParagraph p2 = doc.CreateParagraph();  
+            //XWPFRun r2 = p2.CreateRun();
+            //r2.SetText("测试段落二");
             
             #region 创建一个表格
             if (list.Count > 0)
@@ -42,6 +46,9 @@ namespace CommonService
                     XWPFParagraph p3 = doc.CreateParagraph();   //向新文档中添加段落
                     p3.Alignment = ParagraphAlignment.LEFT;
                     XWPFRun r3 = p3.CreateRun();                //向该段落中添加文字
+                    r3.FontFamily = "微软雅黑";
+                    r3.FontSize = 18;
+                    r3.IsBold = true;
                     r3.SetText("表名:"+item);
 
                     //从第二行开始 因为第一行是表头
@@ -128,7 +135,7 @@ namespace CommonService
                             //第一列
                             XWPFParagraph pIO = table.GetRow(i).GetCell(0).AddParagraph();
                             XWPFRun rIO = pIO.CreateRun();
-                            rIO.FontFamily = "微软雅黑";
+                            //rIO.FontFamily = "微软雅黑";
                             rIO.FontSize = 12;
                             rIO.IsBold = true;
                             rIO.SetText(itm.index.ToString());
@@ -136,7 +143,7 @@ namespace CommonService
                             //第二列
                             XWPFParagraph pIO2 = table.GetRow(i).GetCell(1).AddParagraph();
                             XWPFRun rIO2 = pIO2.CreateRun();
-                            rIO2.FontFamily = "微软雅黑";
+                            //rIO2.FontFamily = "微软雅黑";
                             rIO2.FontSize = 12;
                             rIO2.IsBold = true;
                             rIO2.SetText(itm.Title);
@@ -144,49 +151,49 @@ namespace CommonService
 
                             XWPFParagraph pIO3 = table.GetRow(i).GetCell(2).AddParagraph();
                             XWPFRun rIO3 = pIO3.CreateRun();
-                            rIO3.FontFamily = "微软雅黑";
+                            //rIO3.FontFamily = "微软雅黑";
                             rIO3.FontSize = 12;
                             rIO3.IsBold = true;
                             rIO3.SetText(itm.isMark.ToString());
 
                             XWPFParagraph pIO4 = table.GetRow(i).GetCell(3).AddParagraph();
                             XWPFRun rIO4 = pIO4.CreateRun();
-                            rIO4.FontFamily = "微软雅黑";
+                            //rIO4.FontFamily = "微软雅黑";
                             rIO4.FontSize = 12;
                             rIO4.IsBold = true;
                             rIO4.SetText(itm.isPK.ToString());
 
                             XWPFParagraph pIO5 = table.GetRow(i).GetCell(4).AddParagraph();
                             XWPFRun rIO5 = pIO5.CreateRun();
-                            rIO5.FontFamily = "微软雅黑";
+                            //rIO5.FontFamily = "微软雅黑";
                             rIO5.FontSize = 12;
                             rIO5.IsBold = true;
                             rIO5.SetText(itm.FieldType);
 
                             XWPFParagraph pIO6 = table.GetRow(i).GetCell(5).AddParagraph();
                             XWPFRun rIO6 = pIO6.CreateRun();
-                            rIO6.FontFamily = "微软雅黑";
+                            //rIO6.FontFamily = "微软雅黑";
                             rIO6.FontSize = 12;
                             rIO6.IsBold = true;
                             rIO6.SetText(itm.fieldLenth.ToString());
 
                             XWPFParagraph pIO7 = table.GetRow(i).GetCell(6).AddParagraph();
                             XWPFRun rIO7 = pIO7.CreateRun();
-                            rIO7.FontFamily = "微软雅黑";
+                            //rIO7.FontFamily = "微软雅黑";
                             rIO7.FontSize = 12;
                             rIO7.IsBold = true;
                             rIO7.SetText(itm.isAllowEmpty.ToString());
 
                             XWPFParagraph pIO8 = table.GetRow(i).GetCell(7).AddParagraph();
                             XWPFRun rIO8 = pIO8.CreateRun();
-                            rIO8.FontFamily = "微软雅黑";
+                            //rIO8.FontFamily = "微软雅黑";
                             rIO8.FontSize = 12;
                             rIO8.IsBold = true;
                             rIO8.SetText(itm.defaultValue.ToString());
 
                             XWPFParagraph pIO9 = table.GetRow(i).GetCell(8).AddParagraph();
                             XWPFRun rIO9 = pIO9.CreateRun();
-                            rIO9.FontFamily = "微软雅黑";
+                            //rIO9.FontFamily = "微软雅黑";
                             rIO9.FontSize = 12;
                             rIO9.IsBold = true;
                             rIO9.SetText(itm.fieldDesc);

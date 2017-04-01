@@ -57,7 +57,7 @@ namespace DataBaseToDocument
                 var listnew = service.GetTableDetail("UserInfo", constr);
                 var list = service.GetDBTableList(constr);
                 
-                docservice.CreateToWord(list,constr);
+                docservice.CreateToWord(list,constr, db);
                 MessageBox.Show("生成成功");
             }
 
