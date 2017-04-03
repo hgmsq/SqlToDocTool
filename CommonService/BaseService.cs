@@ -120,6 +120,44 @@ namespace CommonService
             return list;
         }
         /// <summary>
+        /// 获取特定数据库里面的存储过程
+        /// </summary>
+        /// <param name="conStr"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public List<ProcModel> GetProcList(string conStr)
+        {
+            var list = new List<ProcModel>();
+            string sql = @"  select name as procName, (select text from syscomments where id=OBJECT_ID(name)) as proDerails
+                         from dbo.sysobjects  o  where OBJECTPROPERTY(id, N'IsProcedure') = 1 order by name  ";
+            try
+            {
+               // http://www.cnblogs.com/minideas/archive/2009/10/29/1591891.html
+                using (SqlConnection connection = new SqlConnection(conStr))
+                {
+                    list = connection.Query<ProcModel>(sql).ToList();
+                }
+            }
+            catch
+            {
+
+            }
+            return list;
+        }
+        /// <summary>
+        /// 获取特定存储过程的信息
+        /// </summary>
+        /// <param name="procname"></param>
+        /// <param name="conStr"></param>
+        /// <returns></returns>
+        public string GetProcDetail(string procname,string conStr)
+        {
+            string str = "";
+
+            return str;
+        }
+
+        /// <summary>
         /// 获取字段的信息
         /// </summary>
         /// <param name="tableName"></param>

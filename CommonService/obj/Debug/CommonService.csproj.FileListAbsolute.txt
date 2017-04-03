@@ -36,3 +36,16 @@ F:\Git\SqlToDoc\SqlToDocTool\SqlToDocTool\CommonService\bin\Debug\NPOI.xml
 F:\Git\SqlToDoc\SqlToDocTool\SqlToDocTool\CommonService\obj\Debug\CommonService.csprojResolveAssemblyReference.cache
 F:\Git\SqlToDoc\SqlToDocTool\SqlToDocTool\CommonService\obj\Debug\CommonService.dll
 F:\Git\SqlToDoc\SqlToDocTool\SqlToDocTool\CommonService\obj\Debug\CommonService.pdb
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\CommonService.dll
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\CommonService.pdb
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\Dapper.dll
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\NPOI.dll
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\NPOI.OOXML.dll
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\NPOI.OpenXml4Net.dll
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\Dapper.xml
+E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\NPOI.xml
+E:\Git\2017\myproject\SqlToDocTool\CommonService\obj\Debug\CommonService.csprojResolveAssemblyReference.cache
+E:\Git\2017\myproject\SqlToDocTool\CommonService\obj\Debug\CommonService.dll
+E:\Git\2017\myproject\SqlToDocTool\CommonService\obj\Debug\CommonService.pdb

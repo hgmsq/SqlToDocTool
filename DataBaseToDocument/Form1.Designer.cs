@@ -73,6 +73,7 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(158, 21);
             this.txtServer.TabIndex = 3;
+            this.txtServer.Text = ".";
             // 
             // txtUser
             // 
@@ -80,6 +81,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(158, 21);
             this.txtUser.TabIndex = 4;
+            this.txtUser.Text = "sa";
             // 
             // txtPwd
             // 
@@ -87,6 +89,7 @@
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(158, 21);
             this.txtPwd.TabIndex = 5;
+            this.txtPwd.Text = "sa";
             // 
             // comboBox1
             // 

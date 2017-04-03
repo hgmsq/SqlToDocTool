@@ -1,7 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-
+/***************/
+//作者 郝光明
+//博客园地址：http://www.cnblogs.com/hgmyz/
+//简单SQlServer数据库文档生成工具
+/***************/
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。

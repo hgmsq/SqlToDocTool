@@ -212,6 +212,31 @@ namespace CommonService
 
             #endregion
 
+            #region 存储过程
+            XWPFParagraph p2 = doc.CreateParagraph();
+            XWPFRun r2 = p2.CreateRun();
+            r2.FontSize = 16;
+            r2.SetText("存储过程");
+            List<ProcModel> proclist = new List<ProcModel>();
+            proclist = service.GetProcList(conStr);
+            if(proclist.Count>0)
+            {
+                foreach(var item in proclist)
+                {
+                    //存储过程名称
+                    XWPFParagraph pro1 = doc.CreateParagraph();
+                    XWPFRun rpro1 = pro1.CreateRun();
+                    rpro1.FontSize = 14;
+                    rpro1.IsBold = true;
+                    rpro1.SetText("存储过程名称："+item.procName);
+                    //存储过程 详情
+                    XWPFParagraph pro2 = doc.CreateParagraph();
+                    XWPFRun rpro2 = pro2.CreateRun();
+                    rpro2.FontSize = 12;
+                    rpro2.SetText(item.proDerails);
+                }
+            }
+            #endregion
 
             FileStream sw = File.Create("../../Doc/db.docx"); //...
             doc.Write(sw);                              //...
@@ -265,6 +290,14 @@ namespace CommonService
             /// 字段说明
             /// </summary>
             public string fieldDesc { get; set; }
+        }
+        /// <summary>
+        /// 存储过程详情
+        /// </summary>
+        public class ProcModel
+        {
+            public string procName { get; set; }
+            public string proDerails { get; set; }
         }
     }
 }

@@ -43,13 +43,13 @@ namespace DataBaseToDocument
 
         private void btnToDoc_Click(object sender, EventArgs e)
         {
-            string db = comboBox1.SelectedValue.ToString();
-            if(string.IsNullOrWhiteSpace(db))
+            if (comboBox1.SelectedValue==null)
             {
                 MessageBox.Show("请选择数据库");
             }
             else
             {
+                string db = comboBox1.SelectedValue.ToString();
                 string servername = txtServer.Text.Trim();
                 string uid = txtUser.Text.Trim();
                 string pwd = txtPwd.Text.Trim();
