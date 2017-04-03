@@ -334,5 +334,13 @@ namespace CommonService
             public string viewName { get; set; }
             public string viewDerails { get; set; }
         }
+        /// <summary>
+        /// 数据库详情
+        /// </summary>
+        public class DBModel
+        {
+            public string name { get; set; }
+
+        }
     }
 }

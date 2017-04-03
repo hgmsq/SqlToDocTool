@@ -101,6 +101,24 @@ namespace CommonService
           
         }
 
+        public List<DBModel> GetDBList(string conStr)
+        {
+            //List<DBName> list =new List<DBName>();
+            string sql = "select [name] from master.dbo.sysdatabases where DBId>6 Order By [Name] ";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conStr))
+                {
+                    var list = connection.Query<DBModel>(sql).ToList();
+                    return list;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
 
         public List<string> GetDBTableList(string conStr)
         {
@@ -199,5 +217,21 @@ namespace CommonService
 
             return list;
         }
+
+        public void BakDataBase(List<string> list, string conStr,string path)        {
+        
+            foreach (var item in list)
+            {
+                string sql = string.Format("backup database {0} to disk='{1}{0}.bak'  ", item, path);
+
+                // http://www.cnblogs.com/minideas/archive/2009/10/29/1591891.html
+                using (SqlConnection connection = new SqlConnection(conStr))
+                {
+                    int count = connection.Execute(sql);
+                }
+            }
+
+        }
+
     }
 }

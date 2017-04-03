@@ -14,6 +14,7 @@ namespace DataBaseToDocument
     {
         BaseService service = new BaseService();
         NpoiToDoc docservice = new NpoiToDoc();
+        public static string Form1Value; // 注意，必须申明为static变量
         public Form1()
         {
             InitializeComponent();
@@ -59,6 +60,27 @@ namespace DataBaseToDocument
                 
                 docservice.CreateToWord(list,constr, db);
                 MessageBox.Show("生成成功");
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedValue == null)
+            {
+                MessageBox.Show("请先保证服务器连接成功");
+            }
+            else
+            {
+                string db = comboBox1.SelectedValue.ToString();
+                string servername = txtServer.Text.Trim();
+                string uid = txtUser.Text.Trim();
+                string pwd = txtPwd.Text.Trim();
+                string constr = service.GetConnectioning(servername, uid, pwd, db);
+                Form1Value = constr;            
+                this.Hide();
+                FormToBak fr = new FormToBak();
+                fr.Show();
             }
 
         }
