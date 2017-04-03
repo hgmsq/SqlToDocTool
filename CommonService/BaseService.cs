@@ -145,16 +145,29 @@ namespace CommonService
             return list;
         }
         /// <summary>
-        /// 获取特定存储过程的信息
+        /// 获取特定数据库里面的视图
         /// </summary>
-        /// <param name="procname"></param>
         /// <param name="conStr"></param>
+        /// <param name="db"></param>
         /// <returns></returns>
-        public string GetProcDetail(string procname,string conStr)
+        public List<ViewModel> GetViewList(string conStr)
         {
-            string str = "";
+            var list = new List<ViewModel>();
+            string sql = @"  select name as viewName, (select text from syscomments where id=OBJECT_ID(name)) as viewDerails
+                         from dbo.sysobjects  o  where OBJECTPROPERTY(id, N'IsView') = 1 order by name  ";
+            try
+            {
+                // http://www.cnblogs.com/minideas/archive/2009/10/29/1591891.html
+                using (SqlConnection connection = new SqlConnection(conStr))
+                {
+                    list = connection.Query<ViewModel>(sql).ToList();
+                }
+            }
+            catch
+            {
 
-            return str;
+            }
+            return list;
         }
 
         /// <summary>

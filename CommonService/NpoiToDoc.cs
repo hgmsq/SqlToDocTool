@@ -238,6 +238,32 @@ namespace CommonService
             }
             #endregion
 
+            #region 试图
+            XWPFParagraph v2 = doc.CreateParagraph();
+            XWPFRun vr2 = v2.CreateRun();
+            vr2.FontSize = 16;
+            vr2.SetText("视图");
+            List<ViewModel> viewlist = new List<ViewModel>();
+            viewlist = service.GetViewList(conStr);
+            if (proclist.Count > 0)
+            {
+                foreach (var item in viewlist)
+                {
+                    //存储过程名称
+                    XWPFParagraph vro1 = doc.CreateParagraph();
+                    XWPFRun vpro1 = vro1.CreateRun();
+                    vpro1.FontSize = 14;
+                    vpro1.IsBold = true;
+                    vpro1.SetText("视图名称：" + item.viewName);
+                    //存储过程 详情
+                    XWPFParagraph vro2 = doc.CreateParagraph();
+                    XWPFRun vpro2 = vro2.CreateRun();
+                    vpro2.FontSize = 12;
+                    vpro2.SetText(item.viewDerails);
+                }
+            }
+            #endregion
+
             FileStream sw = File.Create("../../Doc/db.docx"); //...
             doc.Write(sw);                              //...
             sw.Close();                                 //在服务端生成文件
@@ -298,6 +324,15 @@ namespace CommonService
         {
             public string procName { get; set; }
             public string proDerails { get; set; }
+        }
+
+        /// <summary>
+        /// 视图详情
+        /// </summary>
+        public class ViewModel
+        {
+            public string viewName { get; set; }
+            public string viewDerails { get; set; }
         }
     }
 }
