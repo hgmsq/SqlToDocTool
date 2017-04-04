@@ -78,9 +78,10 @@ namespace DataBaseToDocument
                 string pwd = txtPwd.Text.Trim();
                 string constr = service.GetConnectioning(servername, uid, pwd, db);
                 Form1Value = constr;            
-                this.Hide();
+                //this.Hide();
                 FormToBak fr = new FormToBak();
-                fr.Show();
+                fr.ShowDialog();
+                this.Close();
             }
 
         }
