@@ -9,6 +9,7 @@ namespace CommonService
 {
     public class NpoiToDoc
     {
+        //http://www.cnblogs.com/zfanlong1314/p/3917451.html  docx操作
         BaseService service = new BaseService();
         /// <summary>
         /// 生成word文档
