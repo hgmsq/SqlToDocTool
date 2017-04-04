@@ -48,3 +48,4 @@ E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\Dapper.xml
 E:\Git\2017\myproject\SqlToDocTool\CommonService\bin\Debug\NPOI.xml
 E:\Git\2017\myproject\SqlToDocTool\CommonService\obj\Debug\CommonService.dll
 E:\Git\2017\myproject\SqlToDocTool\CommonService\obj\Debug\CommonService.pdb
+E:\Git\2017\myproject\SqlToDocTool\CommonService\obj\Debug\CommonService.csprojResolveAssemblyReference.cache

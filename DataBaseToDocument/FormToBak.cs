@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CommonService;
+using System.IO;
 namespace DataBaseToDocument
 {
     public partial class FormToBak : Form
@@ -25,13 +26,18 @@ namespace DataBaseToDocument
         private void button1_Click(object sender, EventArgs e)
         {
             var list = CheckBox_GetData();
-            string path =@"D:\Bak\";
+            //string path =@"D:\Bak\";
+            string path= Environment.CurrentDirectory.ToString()+"\\Bak\\";
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);//创建新路径
+            }
             try
             {
                 if (list != null && list.Count > 0)
                 {
                     service.BakDataBase(list, constr, path);
-                    MessageBox.Show("操作成功,备份文件放在D:\\Bak目录下");
+                    MessageBox.Show("操作成功");
                 }
                 else
                 {
