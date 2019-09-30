@@ -50,7 +50,8 @@ namespace DataBaseToDocument
 
         private void FormToBak_Load(object sender, EventArgs e)
         {
-           var list = service.GetDBList(constr);
+           //var list = service.GetDBList(constr);
+            var list = service.GetDBNameList(constr);
             DataGridViewCheckBoxColumn newColumn = new DataGridViewCheckBoxColumn();          
             newColumn.HeaderText = "选择";     
             dataGridView1.Columns.Add(newColumn);

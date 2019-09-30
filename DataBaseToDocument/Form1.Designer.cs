@@ -74,7 +74,7 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(158, 21);
             this.txtServer.TabIndex = 3;
-            this.txtServer.Text = ".";
+            this.txtServer.Text = "127.0.0.1";
             // 
             // txtUser
             // 
@@ -82,7 +82,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(158, 21);
             this.txtUser.TabIndex = 4;
-            this.txtUser.Text = "sa";
+            this.txtUser.Text = "root";
             // 
             // txtPwd
             // 
@@ -90,7 +90,7 @@
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(158, 21);
             this.txtPwd.TabIndex = 5;
-            this.txtPwd.Text = "sa";
+            this.txtPwd.Text = "123456";
             // 
             // comboBox1
             // 

@@ -3,12 +3,12 @@ using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
-using static CommonService.NpoiToDoc;
+using CommonService.Models;
 using System.Text;
 
 namespace CommonService
 {
-    public class BaseService
+    public class BaseService:IBaseService
     {
         //定义数据库字符串
         //private static string conStr = "server=.;uid=sa;pwd=sa;database=master";
@@ -119,6 +119,11 @@ namespace CommonService
             }
 
         }
+        /// <summary>
+        /// 获取特定数据库的表名列表
+        /// </summary>
+        /// <param name="conStr"></param>
+        /// <returns></returns>
 
         public List<string> GetDBTableList(string conStr)
         {
@@ -143,7 +148,7 @@ namespace CommonService
         /// <param name="conStr"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-        public List<ProcModel> GetProcList(string conStr)
+        public List<ProcModel> GetProcList(string conStr, string dbName = "")
         {
             var list = new List<ProcModel>();
             string sql = @"  select name as procName, (select text from syscomments where id=OBJECT_ID(name)) as proDerails
@@ -168,7 +173,7 @@ namespace CommonService
         /// <param name="conStr"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-        public List<ViewModel> GetViewList(string conStr)
+        public List<ViewModel> GetViewList(string conStr, string dbName = "")
         {
             var list = new List<ViewModel>();
             string sql = @"  select name as viewName, (select text from syscomments where id=OBJECT_ID(name)) as viewDerails
@@ -194,7 +199,7 @@ namespace CommonService
         /// <param name="tableName"></param>
         /// <param name="conStr"></param>
         /// <returns></returns>
-        public List<TableDetail> GetTableDetail(string tableName, string conStr)
+        public List<TableDetail> GetTableDetail(string tableName, string conStr, string dbName = "")
         {
             var list = new List<TableDetail>();
             StringBuilder sb = new StringBuilder();
