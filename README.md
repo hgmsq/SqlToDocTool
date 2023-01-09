@@ -1,27 +1,46 @@
 # SqlToDocTool
-SQlServer 数据库生成数据库说明文档工具
-这是一款简单的数据库文档生成工具，主要实现了SQlServer生成说明文档的小工具，目前不够完善，主要可以把数据库的表以及表的详细字段信息，导出到
+这是一款简单的数据库文档生成工具，主要实现了 SQlServer+MYsql 说明文档的生成，并且支持 SQLServer 数据库的备份功能，主要可以把数据库的表以及表的详细字段信息导出到 Word 中，可以方便开发人员了解数据库的信息或写技术说明文档。
 
-Word中，可以方便开发人员了解数据库的信息或写技术说明文档。
+界面效果
+1. 主界面
 
-技术上主要采用的 C#+Dapper+Npod ,开发工具为Vs2015,基于Net4.5框架。
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0407/202104_0c2c61cd_335359.png "主界面")
 
-操作Word代码
 
-NPoi 操作Word
- 测试服务器是否连接成功
- 获取数据库列表
- 获取表字段详情
- 获取特定数据库里面的存储过程 
+2. 保存生成的文档
 
-实现思路：
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0407/202126_bdc8ac71_335359.png "生成word文件")
 
-1、首先获取数据库的字符串，测试链接是否成功，
 
-2、通过脚本获取该服务器的数据库列表。
+3. SQLsever 生成的文档效果
 
-3、根据数据库找到该数据库的所有数据表
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0407/202151_8a3ecc32_335359.png "生成SQlServer文档")
 
-4、通过脚本找到该数据表所有的字段信息
 
-5、使用Npoi技术把信息导出到Word中去。
+4. MYSQL生成的文档效果
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0407/202215_6b093191_335359.png "mysql版本")
+
+
+5. 备份数据界面
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0407/202243_e2d3efcf_335359.png "在这里输入图片标题")
+
+
+6. 导出的 bak 文件
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0407/202254_d71ccb68_335359.png "屏幕截图.png")
+
+目前功能还不够完善，该软件后续会持续改进，欢迎各位大神提建议！
+
+微信:hgmyzhl
+
+邮箱：hgmyz@outlook.com
+微信公众号：
+技术号：
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0407/202522_9f003c7c_335359.png "技术号.png")
+
+生活号：
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0407/202540_81d629a5_335359.png "生活号.png")
