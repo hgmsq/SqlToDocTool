@@ -14,7 +14,7 @@ namespace DataBaseToDocument
     public partial class FormToBak : Form
     {
         BaseService service = new BaseService();
-        private string constr="";
+        private string constr = "";
         public FormToBak()
         {
             InitializeComponent();
@@ -27,8 +27,8 @@ namespace DataBaseToDocument
         {
             var list = CheckBox_GetData();
             //string path =@"D:\Bak\";
-            string path= Environment.CurrentDirectory.ToString()+"\\Bak\\";
-            if(!Directory.Exists(path))
+            string path = Environment.CurrentDirectory.ToString() + "\\Bak\\";
+            if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);//创建新路径
             }
@@ -50,14 +50,31 @@ namespace DataBaseToDocument
 
         private void FormToBak_Load(object sender, EventArgs e)
         {
-           //var list = service.GetDBList(constr);
+            //var list = service.GetDBList(constr);
             var list = service.GetDBNameList(constr);
-            DataGridViewCheckBoxColumn newColumn = new DataGridViewCheckBoxColumn();          
-            newColumn.HeaderText = "选择";     
-            dataGridView1.Columns.Add(newColumn);
-            dataGridView1.DataSource = list;
+            var dblist = new List<DBModel>();
+            if(list!=null && list.Count>0)
+            {
+                foreach(var item in list)
+                {
+                    dblist.Add(new DBModel
+                    {
+                        name = item
+                    });
+                }
+            }
+
+            DataGridViewCheckBoxColumn columncb = new DataGridViewCheckBoxColumn();
+            columncb.HeaderText = "选择";
+            columncb.Name = "cb_check";
+            columncb.TrueValue = true;
+            columncb.FalseValue = false;
+            columncb.DataPropertyName = "IsChecked";
+            dataGridView1.Columns.Insert(0, columncb);    //添加的checkbox在第一列
+           
+            dataGridView1.DataSource = dblist;
             dataGridView1.ReadOnly = false;
-            this.dataGridView1.Columns[1].HeaderCell.Value = "数据库名称";         
+            dataGridView1.Columns[1].HeaderCell.Value = "数据库名称";         
         }
         /// <summary>
         /// 获取复选框选中的数据库列表
@@ -80,6 +97,11 @@ namespace DataBaseToDocument
             }
             return list;
         }
+       
+    }
+    public class DBModel
+    {
+        public string name { get; set; }       
 
     }
 }

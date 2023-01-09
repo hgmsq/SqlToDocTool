@@ -61,9 +61,9 @@ namespace CommonService
         /// <param name="uid"></param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public string GetConnectioning(string servername, string uid, string pwd)
+        public string GetConnectioning(string servername, string uid, string pwd, string port)
         {
-            return string.Format("server={0};uid={1};pwd={2};database=master", servername,uid,pwd);
+            return string.Format("server={0};uid={1};pwd={2};database=master", servername,uid,pwd,port);
         }
         /// <summary>
         /// 获取数据库字符串
@@ -73,7 +73,7 @@ namespace CommonService
         /// <param name="pwd"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-        public string GetConnectioning(string servername, string uid, string pwd,string db)
+        public string GetConnectioning(string servername, string uid, string pwd,string db, string port)
         {
             return string.Format("server={0};uid={1};pwd={2};database={3}", servername, uid, pwd,db);
         }
@@ -125,15 +125,16 @@ namespace CommonService
         /// <param name="conStr"></param>
         /// <returns></returns>
 
-        public List<string> GetDBTableList(string conStr)
+        public List<TableModel> GetDBTableList(string conStr, string dbName = "")
         {
-            var list = new List<string>();
-            string sql = "SELECT TABLE_NAME as name FROM INFORMATION_SCHEMA.TABLES";
+            var list = new List<TableModel>();
+            //string sql = "SELECT TABLE_NAME as name FROM INFORMATION_SCHEMA.TABLES where TABLE_TYPE='BASE TABLE' ";
+            string sql = "select a.name AS tableName,CONVERT(NVARCHAR(100),isnull(g.[value],'')) AS tableDesc from sys.tables a left join sys.extended_properties g on (a.object_id = g.major_id AND g.minor_id = 0)";
             try
             {
                 using (SqlConnection connection = new SqlConnection(conStr))
                 {
-                     list = connection.Query<string>(sql).ToList();
+                     list = connection.Query<TableModel>(sql).ToList();
                 }
             }
             catch
