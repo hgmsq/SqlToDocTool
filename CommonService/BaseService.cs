@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CommonService
 {
-    public class BaseService:IBaseService
+    public class BaseService : IBaseService
     {
         //定义数据库字符串
         //private static string conStr = "server=.;uid=sa;pwd=sa;database=master";
@@ -61,9 +61,9 @@ namespace CommonService
         /// <param name="uid"></param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public string GetConnectioning(string servername, string uid, string pwd)
+        public string GetConnectioning(string servername, string uid, string pwd, string port)
         {
-            return string.Format("server={0};uid={1};pwd={2};database=master", servername,uid,pwd);
+            return string.Format("server={0};uid={1};pwd={2};database=master", servername, uid, pwd, port);
         }
         /// <summary>
         /// 获取数据库字符串
@@ -73,9 +73,9 @@ namespace CommonService
         /// <param name="pwd"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-        public string GetConnectioning(string servername, string uid, string pwd,string db)
+        public string GetConnectioning(string servername, string uid, string pwd, string db, string port)
         {
-            return string.Format("server={0};uid={1};pwd={2};database={3}", servername, uid, pwd,db);
+            return string.Format("server={0};uid={1};pwd={2};database={3}", servername, uid, pwd, db);
         }
         /// <summary>
         /// 获取数据库列表
@@ -98,7 +98,7 @@ namespace CommonService
             {
                 return null;
             }
-          
+
         }
 
         public List<DBModel> GetDBList(string conStr)
@@ -125,20 +125,21 @@ namespace CommonService
         /// <param name="conStr"></param>
         /// <returns></returns>
 
-        public List<string> GetDBTableList(string conStr)
+        public List<TableModel> GetDBTableList(string conStr, string dbName = "")
         {
-            var list = new List<string>();
-            string sql = "SELECT TABLE_NAME as name FROM INFORMATION_SCHEMA.TABLES";
+            var list = new List<TableModel>();
+            //string sql = "SELECT TABLE_NAME as name FROM INFORMATION_SCHEMA.TABLES where TABLE_TYPE='BASE TABLE' ";
+            string sql = "select a.name AS tableName,CONVERT(NVARCHAR(100),isnull(g.[value],'')) AS tableDesc from sys.tables a left join sys.extended_properties g on (a.object_id = g.major_id AND g.minor_id = 0)";
             try
             {
                 using (SqlConnection connection = new SqlConnection(conStr))
                 {
-                     list = connection.Query<string>(sql).ToList();
+                    list = connection.Query<TableModel>(sql).ToList();
                 }
             }
             catch
             {
-                
+
             }
             return list;
         }
@@ -154,8 +155,7 @@ namespace CommonService
             string sql = @"  select name as procName, (select text from syscomments where id=OBJECT_ID(name)) as proDerails
                          from dbo.sysobjects  o  where OBJECTPROPERTY(id, N'IsProcedure') = 1 order by name  ";
             try
-            {
-               // http://www.cnblogs.com/minideas/archive/2009/10/29/1591891.html
+            {               
                 using (SqlConnection connection = new SqlConnection(conStr))
                 {
                     list = connection.Query<ProcModel>(sql).ToList();
@@ -179,8 +179,7 @@ namespace CommonService
             string sql = @"  select name as viewName, (select text from syscomments where id=OBJECT_ID(name)) as viewDerails
                          from dbo.sysobjects  o  where OBJECTPROPERTY(id, N'IsView') = 1 order by name  ";
             try
-            {
-                // http://www.cnblogs.com/minideas/archive/2009/10/29/1591891.html
+            {              
                 using (SqlConnection connection = new SqlConnection(conStr))
                 {
                     list = connection.Query<ViewModel>(sql).ToList();
@@ -209,7 +208,7 @@ namespace CommonService
             sb.Append("FROM syscolumns a LEFT JOIN systypes b  ON a.xusertype = b.xusertype INNER JOIN sysobjects d ON a.id = d.id AND d.xtype = 'U' AND d.name <> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault = e.id ");
             sb.Append("LEFT JOIN sys.extended_properties g ON a.id = G.major_id AND a.colid = g.minor_id LEFT JOIN sys.extended_properties f ON d.id = f.major_id AND f.minor_id = 0");
             //--如果只查询指定表,加上此红色where条件，tablename是要查询的表名；去除红色where条件查询说有的表信息
-            sb.Append("WHERE d.name = '"+ tableName + "' ORDER BY a.id, a.colorder, d.name");        
+            sb.Append("WHERE d.name = '" + tableName + "' ORDER BY a.id, a.colorder, d.name");
             try
             {
                 using (SqlConnection connection = new SqlConnection(conStr))
@@ -223,8 +222,9 @@ namespace CommonService
             return list;
         }
 
-        public void BakDataBase(List<string> list, string conStr,string path)        {
-        
+        public void BakDataBase(List<string> list, string conStr, string path)
+        {
+
             foreach (var item in list)
             {
                 string sql = string.Format("backup database {0} to disk='{1}{0}.bak'  ", item, path);
@@ -237,6 +237,96 @@ namespace CommonService
             }
 
         }
+        /// <summary>
+        /// 获取建表SQL
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="conStr"></param>
+        /// <returns></returns>
+        public string GetTableSQL(string tableName, string conStr)
+        {
+            string sql = string.Format(@"declare @tabname varchar(50)
+set @tabname = '{0}'--表名
 
+if (object_id('tempdb.dbo.#t') is not null)
+                begin
+                DROP TABLE #t
+end
+
+select  'create table [' + so.name + '] (' + o.list + ')'
+    + CASE WHEN tc.Constraint_Name IS NULL THEN '' ELSE 'ALTER TABLE ' + so.Name + ' ADD CONSTRAINT ' + tc.Constraint_Name + ' PRIMARY KEY ' + ' (' + LEFT(j.List, Len(j.List) - 1) + ')' END
+     TABLE_DDL
+into #t from    sysobjects so
+cross apply
+    (SELECT
+        '  [' + column_name + '] ' +
+        data_type + case data_type
+            when 'sql_variant' then ''
+            when 'text' then ''
+            when 'ntext' then ''
+            when 'xml' then ''
+            when 'decimal' then '(' + cast(numeric_precision as varchar) + ', ' + cast(numeric_scale as varchar) + ')'
+            else coalesce('(' +case when character_maximum_length = -1 then 'MAX' else cast(character_maximum_length as varchar) end + ')','') end + ' ' +
+        case when exists(
+        select id from syscolumns
+        where object_name(id)= so.name
+        and name = column_name
+        and columnproperty(id, name,'IsIdentity') = 1
+        ) then
+        'IDENTITY(' +
+        cast(ident_seed(so.name) as varchar) + ',' +
+        cast(ident_incr(so.name) as varchar) + ')'
+        else ''
+        end + ' ' +
+         (case when IS_NULLABLE = 'No' then 'NOT ' else '' end ) +'NULL ' +
+          case when information_schema.columns.COLUMN_DEFAULT IS NOT NULL THEN 'DEFAULT ' + information_schema.columns.COLUMN_DEFAULT ELSE '' END + ', '
+
+     from information_schema.columns where table_name = so.name
+     order by ordinal_position
+    FOR XML PATH('')) o(list)
+left join
+    information_schema.table_constraints tc
+on tc.Table_name = so.Name
+AND tc.Constraint_Type = 'PRIMARY KEY'
+cross apply
+    (select '[' + Column_Name + '], '
+     FROM information_schema.key_column_usage kcu
+     WHERE kcu.Constraint_Name = tc.Constraint_Name
+     ORDER BY
+        ORDINAL_POSITION
+     FOR XML PATH('')) j(list)
+where xtype = 'U'
+AND name = @tabname
+
+select 'USE ' + db_name() + CHAR(13) + 'GO' + CHAR(13) +
+(--区别有主键和没主键
+case when(select count(a.constraint_type)
+from information_schema.table_constraints a
+inner
+join information_schema.constraint_column_usage b
+on a.constraint_name = b.constraint_name
+where a.constraint_type = 'PRIMARY KEY'--主键
+and a.table_name = @tabname) = 1 then
+replace(table_ddl, ', )ALTER TABLE', ')' + CHAR(13) + 'ALTER TABLE')
+else SUBSTRING(table_ddl, 1, len(table_ddl) - 3) + ')' end
+) tableDesc from #t
+drop table #t", tableName);
+            string result = string.Empty;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conStr))
+                {
+                    
+                    var list = connection.Query<TableModel>(sql).ToList();
+                    result = list[0].tableDesc;
+                    
+                }
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+            return result;
+        }
     }
 }
