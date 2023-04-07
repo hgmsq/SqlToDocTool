@@ -23,7 +23,7 @@ namespace CommonService
         /// <returns></returns>
         public string GetConnectioning(string servername, string uid, string pwd, string port)
         {
-            return string.Format("data source={0};user id={1};password={2};port={3};pooling=false;charset=utf8", servername, uid, pwd, port);
+            return string.Format("data source={0};user id={1};password={2};port={3};pooling=false;charset=utf8;", servername, uid, pwd, port);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace CommonService
         /// <returns></returns>
         public string GetConnectioning(string servername, string uid, string pwd, string db, string port)
         {
-            return string.Format("data source={0};user id={1};password={2};database={3};port={4};pooling=false;charset=utf8", servername, uid, pwd, db, port);
+            return string.Format("data source={0};user id={1};password={2};database={3};port={4};pooling=false;charset=utf8;", servername, uid, pwd, db, port);
         }
         /// <summary>
         /// 判断数据库服务器是否连接成功
