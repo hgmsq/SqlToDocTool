@@ -10,9 +10,8 @@ using System.Windows.Forms;
 
 namespace CommonService
 {
-    public class NpoiToDoc
-    {
-        //http://www.cnblogs.com/zfanlong1314/p/3917451.html  docx操作
+    public class NpoiToDoc    {
+       
         //BaseService service = new BaseService();
         //IBaseService service = new BaseServiceMysql();
         IBaseService service = new BaseService();
@@ -322,10 +321,14 @@ namespace CommonService
             {
                 service = new BaseServiceMysql();
             }
-            else
+            else if(type==2)
             {
                 // 获取文件名            
                 service = new BaseServiceSqlite();
+            }
+            else
+            {
+                service = new BaseServicePgsql();
             }
         }
 

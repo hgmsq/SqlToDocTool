@@ -1,13 +1,8 @@
-﻿using System;
+﻿using CommonService;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CommonService;
 namespace DataBaseToDocument
 {
     public partial class Form1 : Form
@@ -27,6 +22,8 @@ namespace DataBaseToDocument
         {
             try
             {
+
+
                 if (comboBox2.SelectedIndex != 2) // 不是sqlite
                 {
                     string servername = txtServer.Text.Trim();
@@ -145,7 +142,7 @@ namespace DataBaseToDocument
                             var arr = constr.Split('\\').ToArray();
                             db = arr[arr.Length - 1];
                         }
-                        else // 不是sqlite
+                        else if(comboBox2.SelectedIndex!=2) // 不是sqlite
                         {
                             string checkStr = checkedListBox1.CheckedItems.ToString();
                             db = comboBox1.SelectedValue.ToString();
@@ -154,7 +151,7 @@ namespace DataBaseToDocument
                             string pwd = txtPwd.Text.Trim();
                             string port = txtPort.Text.Trim();
                             constr = service.GetConnectioning(servername, uid, pwd, db, port);
-                        }
+                        }                     
 
                         var list = service.GetDBTableList(constr, db);
                         int docTypeIndex = comboDocType.SelectedIndex;
@@ -269,7 +266,7 @@ namespace DataBaseToDocument
                 txtPort.Text = "3306";
                 service = new BaseServiceMysql();
             }
-            else // sqlite
+            else if(comboBox2.SelectedIndex == 2)// sqlite
             {
                 txtPort.ReadOnly = true;
                 txtPwd.ReadOnly = true;
@@ -287,7 +284,26 @@ namespace DataBaseToDocument
                 txtPort.Text = "";
                 service = new BaseServiceSqlite();
 
-
+            }
+            else //PostgreSQL
+            {
+                txtSQLitePath.Text = "";
+                selVersion.Enabled = true;
+                txtPort.ReadOnly = false;
+                txtPwd.ReadOnly = false;
+                txtUser.ReadOnly = false;
+                txtServer.ReadOnly = false;
+                comboBox1.Enabled = true;
+                txtSQLitePath.ReadOnly = true;
+                btnSelect.Visible = false;
+                selVersion.Items.Clear();               
+                //selVersion.SelectedIndex = 0;
+                txtPwd.Text = "123456";
+                txtServer.Text = "127.0.0.1";
+                txtUser.Text = "postgres";
+                txtPort.Enabled = true;
+                txtPort.Text = "5432";
+                service = new BaseServicePgsql();
             }
             if (comboBox1.Items.Count > 0)
             {
