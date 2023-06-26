@@ -71,6 +71,13 @@ namespace CommonService
         /// <param name="conStr"></param>
         /// <param name="path"></param>
         void BakDataBase(List<string> list, string conStr, string path);
+        /// <summary>
+        /// 获取创建表SQL
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="conStr"></param>
+        /// <returns></returns>
+        string GetTableSQL(string tableName, string conStr);
 
     }
 }

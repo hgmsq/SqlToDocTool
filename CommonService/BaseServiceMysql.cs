@@ -23,7 +23,11 @@ namespace CommonService
         /// <returns></returns>
         public string GetConnectioning(string servername, string uid, string pwd, string port)
         {
+<<<<<<< HEAD
             return string.Format("data source={0};user id={1};password={2};port={3};pooling=false;charset=utf8", servername, uid, pwd, port);
+=======
+            return string.Format("data source={0};user id={1};password={2};port={3};pooling=false;charset=utf8;", servername, uid, pwd, port);
+>>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
         }
 
         /// <summary>
@@ -35,7 +39,11 @@ namespace CommonService
         /// <returns></returns>
         public string GetConnectioning(string servername, string uid, string pwd, string db, string port)
         {
+<<<<<<< HEAD
             return string.Format("data source={0};user id={1};password={2};database={3};port={4};pooling=false;charset=utf8", servername, uid, pwd, db, port);
+=======
+            return string.Format("data source={0};user id={1};password={2};database={3};port={4};pooling=false;charset=utf8;", servername, uid, pwd, db, port);
+>>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
         }
         /// <summary>
         /// 判断数据库服务器是否连接成功
@@ -116,13 +124,19 @@ namespace CommonService
                         //遍历获取存储过程明细
                         foreach (var item in list)
                         {
+<<<<<<< HEAD
                             //item.proDerails = connection.Query<string>("show create procedure "+item.procName+"; ").ToList().FirstOrDefault();
+=======
+                            var str = connection.Query<dynamic>("show create procedure " + item.procName + "; ").ToList();
+                            var data = (IDictionary<string, object>)str[0];                         
+                            item.proDerails = data["Create Procedure"].ToString(); 
+>>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
                         }
                     }
                     return list;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }
@@ -146,10 +160,17 @@ namespace CommonService
             ifnull(COLUMN_DEFAULT,'') defaultValue,COLUMN_COMMENT fieldDesc
             from information_schema.columns 
             where table_schema ='" + dbName + "' and table_name = '" + tableName + "' order by ORDINAL_POSITION;";
+<<<<<<< HEAD
              using (MySqlConnection connection = new MySqlConnection(conStr))
              {
                 list = connection.Query<TableDetail>(sql).ToList();
              }        
+=======
+            using (MySqlConnection connection = new MySqlConnection(conStr))
+            {
+                list = connection.Query<TableDetail>(sql).ToList();
+            }
+>>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             return list;
         }
         /// <summary>
@@ -179,6 +200,32 @@ namespace CommonService
         public void BakDataBase(List<string> list, string conStr, string path)
         {
             throw new NotImplementedException();
+        }
+        /// <summary>
+        /// mysql 建表SQL
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="conStr"></param>
+        /// <returns></returns>
+        public string GetTableSQL(string tableName, string conStr)
+        {
+            string result = string.Empty;
+            string sql = "show create table " + tableName;
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(conStr))
+                {
+                    var model = connection.QueryFirst<dynamic>(sql);
+                    var data = (IDictionary<string, object>)model;
+                    result = data["Create Table"].ToString();
+                }
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+            return result;
+            
         }
     }
 }
