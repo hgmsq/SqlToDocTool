@@ -355,4 +355,4 @@ Gitcode：https://gitcode.net/xishining/SqlToDocTool
 
 ### 微信:hgmyzhl
 
-### 公众号：IT技术分享社区
+### 公众号：小明互联网技术分享社区
