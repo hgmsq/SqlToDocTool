@@ -119,7 +119,7 @@ namespace CommonService
         /// <returns></returns>
         public List<ProcModel> GetProcList(string conStr, string dbName)
         {
-            string sql = string.Format(@"SELECT proname procName,prosrc proSQl from pg_proc where pronamespace=2200 and prolang=14 and prorettype=1700;  ");
+            string sql = string.Format(@"SELECT proname procName,prosrc proSQl from pg_proc where pronamespace=2200 and prolang=14 and prorettype=1700  order by  proname ;  ");
             try
             {
                 using (NpgsqlConnection connection = new NpgsqlConnection(conStr))
@@ -190,7 +190,7 @@ namespace CommonService
         public List<ViewModel> GetViewList(string conStr, string dbName)
         {
             var result = new List<ViewModel>();
-            string sql = string.Format(@" SELECT viewname viewName,definition viewDerails from pg_views where schemaname='public'  ");
+            string sql = string.Format(@" SELECT viewname viewName,definition viewDerails from pg_views where schemaname='public' order by viewname  ");
             try
             {       
                 using (NpgsqlConnection connection = new NpgsqlConnection(conStr))

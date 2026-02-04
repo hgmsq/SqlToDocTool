@@ -23,11 +23,7 @@ namespace CommonService
         /// <returns></returns>
         public string GetConnectioning(string servername, string uid, string pwd, string port)
         {
-<<<<<<< HEAD
-            return string.Format("data source={0};user id={1};password={2};port={3};pooling=false;charset=utf8", servername, uid, pwd, port);
-=======
             return string.Format("data source={0};user id={1};password={2};port={3};pooling=false;charset=utf8;", servername, uid, pwd, port);
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
         }
 
         /// <summary>
@@ -39,11 +35,7 @@ namespace CommonService
         /// <returns></returns>
         public string GetConnectioning(string servername, string uid, string pwd, string db, string port)
         {
-<<<<<<< HEAD
-            return string.Format("data source={0};user id={1};password={2};database={3};port={4};pooling=false;charset=utf8", servername, uid, pwd, db, port);
-=======
             return string.Format("data source={0};user id={1};password={2};database={3};port={4};pooling=false;charset=utf8;", servername, uid, pwd, db, port);
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
         }
         /// <summary>
         /// 判断数据库服务器是否连接成功
@@ -95,7 +87,7 @@ namespace CommonService
         /// <returns></returns>
         public List<TableModel> GetDBTableList(string conStr, string db)
         {
-            string sql = "select table_name tableName,table_comment tableDesc from information_schema.tables where table_schema='" + db + "' and table_type='BASE TABLE'; ";
+            string sql = "select table_name tableName,table_comment tableDesc from information_schema.tables where table_schema='" + db + "' and table_type='BASE TABLE'  ORDER BY table_name asc  ; ";
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
@@ -113,7 +105,7 @@ namespace CommonService
         public List<ProcModel> GetProcList(string conStr, string dbName)
         {
             string sql = string.Format(@"select `name` procName from mysql.proc where type = 'PROCEDURE' and
-            db = '{0}'  ", dbName);
+            db = '{0}'  order by name ", dbName);
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(conStr))
@@ -124,13 +116,9 @@ namespace CommonService
                         //遍历获取存储过程明细
                         foreach (var item in list)
                         {
-<<<<<<< HEAD
-                            //item.proDerails = connection.Query<string>("show create procedure "+item.procName+"; ").ToList().FirstOrDefault();
-=======
                             var str = connection.Query<dynamic>("show create procedure " + item.procName + "; ").ToList();
                             var data = (IDictionary<string, object>)str[0];                         
                             item.proDerails = data["Create Procedure"].ToString(); 
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
                         }
                     }
                     return list;
@@ -160,17 +148,10 @@ namespace CommonService
             ifnull(COLUMN_DEFAULT,'') defaultValue,COLUMN_COMMENT fieldDesc
             from information_schema.columns 
             where table_schema ='" + dbName + "' and table_name = '" + tableName + "' order by ORDINAL_POSITION;";
-<<<<<<< HEAD
-             using (MySqlConnection connection = new MySqlConnection(conStr))
-             {
-                list = connection.Query<TableDetail>(sql).ToList();
-             }        
-=======
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
                 list = connection.Query<TableDetail>(sql).ToList();
             }
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             return list;
         }
         /// <summary>
@@ -183,7 +164,7 @@ namespace CommonService
         {
             var list = new List<ViewModel>();
             string sql = string.Format(@" select TABLE_NAME viewName,VIEW_DEFINITION viewDerails from  information_schema.views 
-            where TABLE_SCHEMA='{0}'  ", dbName);
+            where TABLE_SCHEMA='{0}' order by TABLE_NAME  ", dbName);
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(conStr))

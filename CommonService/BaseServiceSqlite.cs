@@ -67,7 +67,7 @@ namespace CommonService
         /// <returns></returns>
         public List<TableModel> GetDBTableList(string conStr, string dbName = "")
         {
-            string sql = "SELECT name tableName,'' tableDesc,sql  from sqlite_master where type='table' and name !='sqlite_sequence'; ";
+            string sql = "SELECT name tableName,'' tableDesc,sql  from sqlite_master where type='table' and name !='sqlite_sequence' order by name ; ";
 
             using (SQLiteConnection connection = new SQLiteConnection(conStr))
             {
@@ -121,7 +121,7 @@ namespace CommonService
         /// <returns></returns>
         public List<ViewModel> GetViewList(string conStr, string dbName = "")
         {
-            string sql = "SELECT name viewName,sql viewDerails,sql  from sqlite_master where type='view' and name !='sqlite_sequence'; ";
+            string sql = "SELECT name viewName,sql viewDerails,sql  from sqlite_master where type='view' and name !='sqlite_sequence' order by name ; ";
 
             using (SQLiteConnection connection = new SQLiteConnection(conStr))
             {

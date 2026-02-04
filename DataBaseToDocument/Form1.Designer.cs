@@ -49,13 +49,10 @@
             this.selVersion = new System.Windows.Forms.ComboBox();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label9 = new System.Windows.Forms.Label();
-<<<<<<< HEAD
-=======
             this.lblSqlitePath = new System.Windows.Forms.Label();
             this.txtSQLitePath = new System.Windows.Forms.TextBox();
             this.btnSelect = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             this.SuspendLayout();
             // 
             // label1
@@ -79,11 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-<<<<<<< HEAD
-            this.label3.Location = new System.Drawing.Point(104, 218);
-=======
             this.label3.Location = new System.Drawing.Point(116, 239);
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 2;
@@ -107,11 +100,7 @@
             // 
             // txtPwd
             // 
-<<<<<<< HEAD
-            this.txtPwd.Location = new System.Drawing.Point(179, 215);
-=======
             this.txtPwd.Location = new System.Drawing.Point(179, 234);
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(158, 21);
             this.txtPwd.TabIndex = 5;
@@ -120,11 +109,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-<<<<<<< HEAD
-            this.comboBox1.Location = new System.Drawing.Point(179, 264);
-=======
             this.comboBox1.Location = new System.Drawing.Point(179, 266);
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(158, 20);
             this.comboBox1.TabIndex = 6;
@@ -132,11 +117,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-<<<<<<< HEAD
-            this.label4.Location = new System.Drawing.Point(104, 267);
-=======
             this.label4.Location = new System.Drawing.Point(104, 269);
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 7;
@@ -144,7 +125,7 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(118, 403);
+            this.btnTest.Location = new System.Drawing.Point(82, 468);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(79, 30);
             this.btnTest.TabIndex = 8;
@@ -154,7 +135,7 @@
             // 
             // btnToDoc
             // 
-            this.btnToDoc.Location = new System.Drawing.Point(242, 403);
+            this.btnToDoc.Location = new System.Drawing.Point(226, 468);
             this.btnToDoc.Name = "btnToDoc";
             this.btnToDoc.Size = new System.Drawing.Size(79, 30);
             this.btnToDoc.TabIndex = 9;
@@ -164,7 +145,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(366, 403);
+            this.button1.Location = new System.Drawing.Point(353, 468);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(79, 30);
             this.button1.TabIndex = 10;
@@ -180,23 +161,15 @@
             this.label5.Size = new System.Drawing.Size(77, 12);
             this.label5.TabIndex = 11;
             this.label5.Text = "数据库类型：";
-<<<<<<< HEAD
-            this.label5.Click += new System.EventHandler(this.Label5_Click);
-=======
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "SQLserver",
-<<<<<<< HEAD
-            "MySQL"});
-=======
             "MySQL",
             "SQLite",
             "PostgreSQL"});
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             this.comboBox2.Location = new System.Drawing.Point(179, 35);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(158, 20);
@@ -240,10 +213,6 @@
             this.comboDocType.Name = "comboDocType";
             this.comboDocType.Size = new System.Drawing.Size(158, 20);
             this.comboDocType.TabIndex = 15;
-<<<<<<< HEAD
-            this.comboDocType.SelectedIndexChanged += new System.EventHandler(this.ComboDocType_SelectedIndexChanged);
-=======
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             // 
             // label8
             // 
@@ -253,10 +222,6 @@
             this.label8.Size = new System.Drawing.Size(41, 12);
             this.label8.TabIndex = 17;
             this.label8.Text = "版本：";
-<<<<<<< HEAD
-            this.label8.Click += new System.EventHandler(this.label8_Click);
-=======
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             // 
             // selVersion
             // 
@@ -275,11 +240,7 @@
             "视图",
             "存储过程"});
             this.checkedListBox1.Location = new System.Drawing.Point(179, 327);
-<<<<<<< HEAD
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-=======
             this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2);
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(187, 59);
             this.checkedListBox1.TabIndex = 19;
@@ -293,8 +254,6 @@
             this.label9.TabIndex = 20;
             this.label9.Text = "文档包含项：";
             // 
-<<<<<<< HEAD
-=======
             // lblSqlitePath
             // 
             this.lblSqlitePath.AutoSize = true;
@@ -325,18 +284,14 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 510);
-<<<<<<< HEAD
-=======
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.txtSQLitePath);
             this.Controls.Add(this.lblSqlitePath);
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
             this.Controls.Add(this.label9);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.selVersion);
@@ -389,13 +344,10 @@
         private System.Windows.Forms.ComboBox selVersion;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Label label9;
-<<<<<<< HEAD
-=======
         private System.Windows.Forms.Label lblSqlitePath;
         private System.Windows.Forms.TextBox txtSQLitePath;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
     }
 }
 

@@ -63,11 +63,7 @@ namespace CommonService
         /// <returns></returns>
         public string GetConnectioning(string servername, string uid, string pwd, string port)
         {
-<<<<<<< HEAD
-            return string.Format("server={0};uid={1};pwd={2};database=master", servername,uid,pwd,port);
-=======
             return string.Format("server={0};uid={1};pwd={2};database=master", servername, uid, pwd, port);
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
         }
         /// <summary>
         /// 获取数据库字符串
@@ -77,11 +73,7 @@ namespace CommonService
         /// <param name="pwd"></param>
         /// <param name="db"></param>
         /// <returns></returns>
-<<<<<<< HEAD
-        public string GetConnectioning(string servername, string uid, string pwd,string db, string port)
-=======
         public string GetConnectioning(string servername, string uid, string pwd, string db, string port)
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
         {
             return string.Format("server={0};uid={1};pwd={2};database={3}", servername, uid, pwd, db);
         }
@@ -137,16 +129,12 @@ namespace CommonService
         {
             var list = new List<TableModel>();
             //string sql = "SELECT TABLE_NAME as name FROM INFORMATION_SCHEMA.TABLES where TABLE_TYPE='BASE TABLE' ";
-            string sql = "select a.name AS tableName,CONVERT(NVARCHAR(100),isnull(g.[value],'')) AS tableDesc from sys.tables a left join sys.extended_properties g on (a.object_id = g.major_id AND g.minor_id = 0)";
+            string sql = "select a.name AS tableName,CONVERT(NVARCHAR(100),isnull(g.[value],'')) AS tableDesc from sys.tables a left join sys.extended_properties g on (a.object_id = g.major_id AND g.minor_id = 0) order by a.name ";
             try
             {
                 using (SqlConnection connection = new SqlConnection(conStr))
                 {
-<<<<<<< HEAD
-                     list = connection.Query<TableModel>(sql).ToList();
-=======
                     list = connection.Query<TableModel>(sql).ToList();
->>>>>>> 6ed2518c9e89cf04b20cc3fb0d71a7f2815be3c0
                 }
             }
             catch

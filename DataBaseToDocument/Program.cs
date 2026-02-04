@@ -11,7 +11,7 @@ namespace DataBaseToDocument
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
-        [STAThread]
+        [STAThread]     
         static void Main()
         {
             Application.EnableVisualStyles();
